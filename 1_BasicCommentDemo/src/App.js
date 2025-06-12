@@ -1,0 +1,141 @@
+import { useState } from 'react'
+import './App.scss'
+import avatar from './images/heart.png'
+import avatar1 from './images/gift.png'
+import avatar2 from './images/club.png'
+import avatar3 from './images/lantern.png'
+
+// data of comments
+const defaultList = [
+  {
+    rpid: 3,
+    user: {
+      uid: '13258165',
+      avatar: avatar1,
+      uname: 'Mary',
+    },
+    content: 'Definitlt feels good.',
+    ctime: '10-18 08:15',
+    like: 88,
+  },
+  {
+    rpid: 2,
+    user: {  
+
+      uid: '36080105',
+      avatar: avatar2,
+      uname: 'Dory',
+    },
+    content: 'Love it!',
+    ctime: '11-13 11:29',
+    like: 88,
+  },
+  {
+    rpid: 1,
+    user: {
+      uid: '30009257',
+      avatar: avatar3,
+      uname: 'CC',
+    },
+    content: 'So good',
+    ctime: '10-19 09:00',
+    like: 66,
+  },
+]
+
+// user info
+const user = {
+  uid: '30009257',
+  avatar: avatar,
+  uname: 'Helene',
+}
+
+// navigation tab setting
+const tabs = [
+  { type: 'hot', text: '最热' },
+  { type: 'time', text: '最新' },
+]
+
+const App = () => {
+  
+  // render the default comments
+  const [commentList, setCommentList]=useState(defaultList)
+
+  // publish an comment
+  const [comment, setComment] = useState('')
+
+  return (
+    <div className="app">
+
+      {/* navigation */}
+      <div className="reply-navigation">
+        <ul className="nav-bar">
+          <li className="nav-title">
+            <span className="nav-title-text">Comments</span>
+            <span className="total-reply">{10}</span>
+          </li>
+          <li className="nav-sort">
+            <span className='nav-item'>Newest</span>
+            <span className='nav-item'>Hotest</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="reply-wrap">
+        <div className="box-normal">
+          <div className="reply-box-avatar">
+            <div className="bili-avatar">
+              <img className="bili-avatar-img" src={avatar} alt="用户头像" />
+            </div>
+          </div>
+          <div className="reply-box-wrap">
+            <textarea
+              className="reply-box-textarea"
+              placeholder="send a comment"
+              value={comment}
+              onChange={(e)=>setComment(e.target.value)}
+            />
+            <div className="reply-box-send">
+              <div className="send-text">Publish</div>
+            </div>
+          </div>
+        </div>
+
+        {/* use 'map' to render the default list */}
+        <div className="reply-list">
+          {commentList.map(item=>(
+          <div className="reply-item">
+            <div key={item.rpid}className="root-reply-avatar">
+              <div className="bili-avatar">
+                <img
+                  className="bili-avatar-img"
+                  alt=""
+                  src={item.user.avatar}
+                />
+              </div>
+            </div>
+            <div className="content-wrap">
+              <div className="user-info">
+                <div className="user-name">{item.user.uname}</div>
+              </div>
+              <div className="root-reply">
+                <span className="reply-content">{item.content}</span>
+                <div className="reply-info">
+                  <span className="reply-time">{item.ctime}</span>
+                  <span className="reply-time">Likes:{item.like}</span>
+                  <span className="delete-btn">
+                    Delete
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          ))}
+
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default App
