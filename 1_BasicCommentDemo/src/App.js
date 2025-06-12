@@ -17,7 +17,7 @@ const defaultList = [
     },
     content: 'Definitlt feels good.',
     ctime: '10-18 08:15',
-    like: 126,
+    like: 126
   },
   {
     rpid: 2,
@@ -28,7 +28,7 @@ const defaultList = [
     },
     content: 'Love it!',
     ctime: '11-13 11:29',
-    like: 88,
+    like: 88
   },
   {
     rpid: 1,
@@ -39,7 +39,7 @@ const defaultList = [
     },
     content: 'So good',
     ctime: '10-19 09:00',
-    like: 66,
+    like: 66
   },
 ]
 
@@ -61,9 +61,6 @@ const App = () => {
   // render the default comments
   const [commentList, setCommentList]=useState(_.orderBy(defaultList, 'like', 'desc'))
 
-  // publish an comment
-  const [comment, setComment] = useState('')
-  
   // delete fuction
   const handelDel=(id)=>{
     setCommentList(commentList.filter(item=>item.rpid !== id))
@@ -79,6 +76,25 @@ const App = () => {
     } else {
       setCommentList(_.orderBy(commentList, 'ctime', 'desc'))
     }
+  }
+
+  // publish an comment
+  const [comment, setComment] = useState('')
+  const handelPublic=()=>{
+    setCommentList([
+      ...commentList,
+      {
+        rpid: 1,
+        user: {
+          uid: '30009257',
+          avatar: avatar,
+          uname: 'Helene',
+        },
+        content: comment,
+        ctime: '10-19 09:00',
+        like: 66
+      }
+    ])
   }
 
   return (
@@ -117,7 +133,7 @@ const App = () => {
               onChange={(e)=>setComment(e.target.value)}
             />
             <div className="reply-box-send">
-              <div className="send-text">Publish</div>
+              <div className="send-text" onClick={()=>{handelPublic()}}>Publish</div>
             </div>
           </div>
         </div>
