@@ -21,7 +21,6 @@ const defaultList = [
   {
     rpid: 2,
     user: {  
-
       uid: '36080105',
       avatar: avatar2,
       uname: 'Dory',
@@ -34,8 +33,8 @@ const defaultList = [
     rpid: 1,
     user: {
       uid: '30009257',
-      avatar: avatar3,
-      uname: 'CC',
+      avatar: avatar,
+      uname: 'Helene',
     },
     content: 'So good',
     ctime: '10-19 09:00',
@@ -63,6 +62,11 @@ const App = () => {
 
   // publish an comment
   const [comment, setComment] = useState('')
+  
+  // delete fuction
+  const handelDel=(id)=>{
+    setCommentList(commentList.filter(item=>item.rpid !== id))
+  }
 
   return (
     <div className="app">
@@ -85,7 +89,7 @@ const App = () => {
         <div className="box-normal">
           <div className="reply-box-avatar">
             <div className="bili-avatar">
-              <img className="bili-avatar-img" src={avatar} alt="用户头像" />
+              <img className="bili-avatar-img" src={avatar} alt="User Avatar" />
             </div>
           </div>
           <div className="reply-box-wrap">
@@ -123,9 +127,10 @@ const App = () => {
                 <div className="reply-info">
                   <span className="reply-time">{item.ctime}</span>
                   <span className="reply-time">Likes:{item.like}</span>
-                  <span className="delete-btn">
+                  {/* if user.id === item.user.id, the delete button will show */}
+                  {user.uid === item.user.uid && <span className="delete-btn" onClick={()=>{handelDel(item.rpid)}}>
                     Delete
-                  </span>
+                  </span>}
                 </div>
               </div>
             </div>
