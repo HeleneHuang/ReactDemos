@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { useState } from 'react'
 import './App.scss'
 import avatar from './images/heart.png'
@@ -16,7 +17,7 @@ const defaultList = [
     },
     content: 'Definitlt feels good.',
     ctime: '10-18 08:15',
-    like: 88,
+    like: 126,
   },
   {
     rpid: 2,
@@ -51,14 +52,14 @@ const user = {
 
 // navigation tab setting
 const tabs = [
-  { type: 'hot', text: '最热' },
-  { type: 'time', text: '最新' },
+  { type: 'hot', text: 'Hot' },
+  { type: 'time', text: 'Latest' },
 ]
 
 const App = () => {
   
   // render the default comments
-  const [commentList, setCommentList]=useState(defaultList)
+  const [commentList, setCommentList]=useState(_.orderBy(defaultList, 'like', 'desc'))
 
   // publish an comment
   const [comment, setComment] = useState('')
@@ -66,6 +67,18 @@ const App = () => {
   // delete fuction
   const handelDel=(id)=>{
     setCommentList(commentList.filter(item=>item.rpid !== id))
+  }
+  
+  // highlighted the activated button
+  const [type, setType]=useState('Hot')
+  const handelTabChange=(type)=>{
+    console.log(type)
+    setType(type)
+    if(type === 'hot'){
+      setCommentList(_.orderBy(commentList, 'like', 'desc'))
+    } else {
+      setCommentList(_.orderBy(commentList, 'ctime', 'desc'))
+    }
   }
 
   return (
@@ -79,8 +92,12 @@ const App = () => {
             <span className="total-reply">{10}</span>
           </li>
           <li className="nav-sort">
-            <span className='nav-item'>Newest</span>
-            <span className='nav-item'>Hotest</span>
+            {tabs.map(item=>(
+              <span key={item.type} 
+              onClick={()=>handelTabChange(item.type)} 
+              className={`nav-item ${type === item.type && 'active'}`}>
+                {item.text}
+              </span>))}
           </li>
         </ul>
       </div>
