@@ -1,6 +1,9 @@
 import _ from 'lodash'
-import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+import dayjs from 'dayjs';
+import { useState, useRef, useEffect } from 'react'
 import './App.scss'
+import axios from 'axios';
 import avatar from './images/heart.png'
 import avatar1 from './images/gift.png'
 import avatar2 from './images/club.png'
@@ -56,10 +59,29 @@ const tabs = [
   { type: 'time', text: 'Latest' },
 ]
 
+// useGetList function
+function useGetList (){
+    // use useEffect() to import data
+  const [commentList, setCommentList] = useState([])
+  useEffect(()=>{
+    async function getList(){
+      const res = await axios.get('http://localhost:3004/list')
+      setCommentList(res.data)
+    }
+    getList()
+  },[])
+  return {
+    commentList,
+    setCommentList
+  }
+}
+
 const App = () => {
   
   // render the default comments
-  const [commentList, setCommentList]=useState(_.orderBy(defaultList, 'like', 'desc'))
+  // const [commentList, setCommentList]=useState(_.orderBy(defaultList, 'like', 'desc'))
+
+  const {commentList, setCommentList} = useGetList()
 
   // delete fuction
   const handelDel=(id)=>{
@@ -80,21 +102,26 @@ const App = () => {
 
   // publish an comment
   const [comment, setComment] = useState('')
+  const inputRef = useRef(null)
   const handelPublic=()=>{
     setCommentList([
       ...commentList,
       {
-        rpid: 1,
+        rpid: uuidv4(),
         user: {
           uid: '30009257',
           avatar: avatar,
           uname: 'Helene',
         },
         content: comment,
-        ctime: '10-19 09:00',
+        ctime: dayjs(new Date()).format('MM-DD hh:mm'),  
         like: 66
       }
     ])
+    // reset the input
+    setComment('')
+    // refocus
+    inputRef.current.focus()
   }
 
   return (
@@ -128,6 +155,7 @@ const App = () => {
           <div className="reply-box-wrap">
             <textarea
               className="reply-box-textarea"
+              ref={inputRef}
               placeholder="send a comment"
               value={comment}
               onChange={(e)=>setComment(e.target.value)}
