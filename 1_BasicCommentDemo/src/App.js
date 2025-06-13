@@ -76,6 +76,39 @@ function useGetList (){
   }
 }
 
+// encapusolate item
+function Item ({item, onDel}){
+  return (
+    <div className="reply-item">
+            <div className="root-reply-avatar">
+              <div className="bili-avatar">
+                <img
+                  className="bili-avatar-img"
+                  alt=""
+                  src={item.user.avatar}
+                />
+              </div>
+            </div>
+            <div className="content-wrap">
+              <div className="user-info">
+                <div className="user-name">{item.user.uname}</div>
+              </div>
+              <div className="root-reply">
+                <span className="reply-content">{item.content}</span>
+                <div className="reply-info">
+                  <span className="reply-time">{item.ctime}</span>
+                  <span className="reply-time">Likes:{item.like}</span>
+                  {/* if user.id === item.user.id, the delete button will show */}
+                  {user.uid === item.user.uid && <span className="delete-btn" onClick={()=>{onDel(item.rpid)}}>
+                    Delete
+                  </span>}
+                </div>
+              </div>
+            </div>
+          </div>
+  )
+}
+
 const App = () => {
   
   // render the default comments
@@ -168,35 +201,7 @@ const App = () => {
 
         {/* use 'map' to render the default list */}
         <div className="reply-list">
-          {commentList.map(item=>(
-          <div className="reply-item">
-            <div key={item.rpid}className="root-reply-avatar">
-              <div className="bili-avatar">
-                <img
-                  className="bili-avatar-img"
-                  alt=""
-                  src={item.user.avatar}
-                />
-              </div>
-            </div>
-            <div className="content-wrap">
-              <div className="user-info">
-                <div className="user-name">{item.user.uname}</div>
-              </div>
-              <div className="root-reply">
-                <span className="reply-content">{item.content}</span>
-                <div className="reply-info">
-                  <span className="reply-time">{item.ctime}</span>
-                  <span className="reply-time">Likes:{item.like}</span>
-                  {/* if user.id === item.user.id, the delete button will show */}
-                  {user.uid === item.user.uid && <span className="delete-btn" onClick={()=>{handelDel(item.rpid)}}>
-                    Delete
-                  </span>}
-                </div>
-              </div>
-            </div>
-          </div>
-          ))}
+          {commentList.map(item=><Item key={item.id} item={item} onDel={handelDel}/>)}
 
         </div>
       </div>
