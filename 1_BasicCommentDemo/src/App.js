@@ -7,10 +7,10 @@ import axios from 'axios';
 import avatar from './images/heart.png'
 import avatar1 from './images/gift.png'
 import avatar2 from './images/club.png'
-import avatar3 from './images/lantern.png'
+// import avatar3 from './images/lantern.png'
 
 // data of comments
-const defaultList = [
+// const defaultList = [
   {
     rpid: 3,
     user: {
@@ -44,7 +44,7 @@ const defaultList = [
     ctime: '10-19 09:00',
     like: 66
   },
-]
+// ]
 
 // user info
 const user = {
