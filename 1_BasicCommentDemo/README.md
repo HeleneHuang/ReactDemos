@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a prototype of a comment system built with React. Users can publish and manage comments through an interactive interface.
+![image](https://github.com/user-attachments/assets/4d1673ec-38c3-457b-bc3a-9c0bb764b79d)
 
-## Available Scripts
+# Main Features
 
-In the project directory, you can run:
+## `useGetList()`
 
-### `npm start`
+- Uses `json-server` to expose a JSON database as a RESTful API.
+- `axios` is used to fetch data from the API.
+- `useEffect()` handles data fetching when the component mounts.
+- `useState()` manages component state.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## `Item()`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `Item()` is a custom component that encapsulates the structure and logic of a single comment, making it reusable and modular.
+- The `onDel` prop is used to pass the `handleDel` function from the `App` component to `Item`, enabling comment deletion.
 
-### `npm test`
+## Switching Between "Hot" and "Latest"
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+className={`nav-item ${type === item.type ? 'active' : ''}`}
+```
 
-### `npm run build`
+This conditional expression dynamically adds the active class to highlight the selected tab.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Areas for Improvement
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Implement a "like" system to make likes interactive and visually engaging, possibly with animated effects when the like button is clicked.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Add input validation before publishing a comment to filter out inappropriate or offensive language.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- I didn't upload avatars mainly because I suffer from decision paralysis when it comes to choosing one. 😅
