@@ -11,39 +11,39 @@ import avatar2 from './images/club.png'
 
 // data of comments
 // const defaultList = [
-  {
-    rpid: 3,
-    user: {
-      uid: '13258165',
-      avatar: avatar1,
-      uname: 'Mary',
-    },
-    content: 'Definitlt feels good.',
-    ctime: '10-18 08:15',
-    like: 126
-  },
-  {
-    rpid: 2,
-    user: {  
-      uid: '36080105',
-      avatar: avatar2,
-      uname: 'Dory',
-    },
-    content: 'Love it!',
-    ctime: '11-13 11:29',
-    like: 88
-  },
-  {
-    rpid: 1,
-    user: {
-      uid: '30009257',
-      avatar: avatar,
-      uname: 'Helene',
-    },
-    content: 'So good',
-    ctime: '10-19 09:00',
-    like: 66
-  },
+  // {
+  //   rpid: 3,
+  //   user: {
+  //     uid: '13258165',
+  //     avatar: avatar1,
+  //     uname: 'Mary',
+  //   },
+  //   content: 'Definitlt feels good.',
+  //   ctime: '10-18 08:15',
+  //   like: 126
+  // },
+  // {
+  //   rpid: 2,
+  //   user: {  
+  //     uid: '36080105',
+  //     avatar: avatar2,
+  //     uname: 'Dory',
+  //   },
+  //   content: 'Love it!',
+  //   ctime: '11-13 11:29',
+  //   like: 88
+  // },
+  // {
+  //   rpid: 1,
+  //   user: {
+  //     uid: '30009257',
+  //     avatar: avatar,
+  //     uname: 'Helene',
+  //   },
+  //   content: 'So good',
+  //   ctime: '10-19 09:00',
+  //   like: 66
+  // },
 // ]
 
 // user info
