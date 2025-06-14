@@ -1,0 +1,37 @@
+{
+  "list": [
+    {
+      "rpid": 3,
+      "user": {
+        "uid": "13258165",
+        "avatar": "https://github.com/HeleneHuang/ReactDemos/blob/9aa34e44824c20f057e2bd4ca881d7e788b22f3b/1_BasicCommentDemo/src/images/club.png",
+        "uname": "Jack"
+      },
+      "content": "so good!",
+      "ctime": "10-18 08: 15",
+      "like": 126
+    },
+    {
+      "rpid": 2,
+      "user": {
+        "uid": "36080105",
+        "avatar": "http://toutiao.itheima.net/resources/images/98.jpg",
+        "uname": "Mary"
+      },
+      "content": "lol",
+      "ctime": "11-13 11: 29",
+      "like": 88
+    },
+    {
+      "rpid": 1,
+      "user": {
+        "uid": "30009257",
+        "avatar": "http://toutiao.itheima.net/resources/images/98.jpg",
+        "uname": "Helene"
+      },
+      "content": "love it!",
+      "ctime": "10-19 09: 00",
+      "like": 66
+    }
+  ]
+}
