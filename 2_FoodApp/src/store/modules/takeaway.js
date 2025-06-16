@@ -5,7 +5,8 @@ const foodStore = createSlice({
     name:'foods',
     initialState: {
         foodsList:[],
-        activeIndex: 0
+        activeIndex: 0,
+        cartList: []
     },
     reducers: {
         setFoodList(state, action){
@@ -13,6 +14,28 @@ const foodStore = createSlice({
         },
         changeActiveIndex(state, action){
             state.activeIndex = action.payload
+        },
+        addCart(state,action){
+            const item = state.cartList.find(item=>item.id === action.payload.id)
+            if(item){
+                item.count++
+            } else {
+                state.cartList.push(action.payload)
+            }
+        },
+        increCount(state,action){
+            const item = state.cartList.find(item=>item.id === action.payload.id)
+            item.count++
+        },
+        decreCount(state,action){
+            const item = state.cartList.find(item=>item.id === action.payload.id)
+            if(item.count<1){
+                state.cartList.pop(action.payload)
+            }
+            item.count--
+        },
+        clearCart(state){
+            state.cartList=[]
         }
     }
 })
@@ -24,7 +47,7 @@ const fetchFoodsList =()=>{
     }
 }
 
-const {setFoodList, changeActiveIndex} = foodStore.actions
-export {fetchFoodsList, changeActiveIndex}
+const {setFoodList, changeActiveIndex, addCart, increCount, decreCount, clearCart} = foodStore.actions
+export {fetchFoodsList, changeActiveIndex, addCart, increCount, decreCount, clearCart}
 const foodReducer = foodStore.reducer
 export default foodReducer
