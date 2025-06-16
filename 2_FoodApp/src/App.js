@@ -26,14 +26,7 @@ const App = () => {
       {/* 内容 */}
       <div className="content-wrap">
         <div className="content">
-          {FoodsCategory.map(item=>{
-            return(
-              <Menu 
-                key={item.key}
-                name={item.type}
-                menu={item.props}/>
-            )
-          })}
+          <Menu/>
           
 
           <div className="list-content">
